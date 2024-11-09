@@ -1,22 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////////
-//    akashi - a server for Attorney Online 2                                       //
-//    Copyright (C) 2020  scatterflower                                             //
-//                                                                                  //
-//    This program is free software: you can redistribute it and/or modify          //
-//    it under the terms of the GNU Affero General Public License as                //
-//    published by the Free Software Foundation, either version 3 of the            //
-//    License, or (at your option) any later version.                               //
-//                                                                                  //
-//    This program is distributed in the hope that it will be useful,               //
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of                //
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 //
-//    GNU Affero General Public License for more details.                           //
-//                                                                                  //
-//    You should have received a copy of the GNU Affero General Public License      //
-//    along with this program.  If not, see <https://www.gnu.org/licenses/>.        //
-//////////////////////////////////////////////////////////////////////////////////////
-#ifndef U_LOGGER_H
-#define U_LOGGER_H
+#pragma once
 
 #include "config_manager.h"
 #include "logger/writer_full.h"
@@ -132,5 +114,3 @@ private:
   QHash<QString, QString> m_logtext{
       {"ic", "[%1][%5][IC][%2(%3)][%4]%6"}, {"ooc", "[%1][%5][OOC][%2(%3)][%4]%6"}, {"login", "[%1][LOGIN][%2][%3][%4(%5)]"}, {"cmdlogin", "[%1][%2][LOGIN][%5][%3(%4)]"}, {"cmdrootpass", "[%1][%2][ROOTPASS][%5][%3(%4)]"}, {"cmdadduser", "[%1][%2][USERADD][%6][%3(%4)]%5"}, {"cmd", "[%1][%2][CMD][%7][%3(%4)]/%5 %6"}, {"kick", "[%1][%2][KICK][%3]"}, {"ban", "[%1][%2][BAN][%3][%4]"}, {"modcall", "[%1][%2][MODCALL][%5][%3(%4)]"}, {"connect", "[%1][CONNECT][%2][%3][%4]"}};
 };
-
-#endif // U_LOGGER_H
