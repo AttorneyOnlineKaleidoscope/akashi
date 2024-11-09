@@ -77,7 +77,7 @@ void NetworkSocket::handleMessage(QString f_data)
             continue;
         }
 
-        emit handlePacket(l_packet);
+        Q_EMIT handlePacket(l_packet);
     }
 }
 

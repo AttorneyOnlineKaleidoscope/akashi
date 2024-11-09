@@ -64,7 +64,7 @@ class NetworkSocket : public QObject
      */
     void write(AOPacket *f_packet);
 
-  signals:
+  Q_SIGNALS:
     /**
      * @brief handlePacket
      * @param f_packet
@@ -76,7 +76,7 @@ class NetworkSocket : public QObject
      */
     void clientDisconnected();
 
-  private slots:
+  private Q_SLOTS:
     /**
      * @brief Handles the processing of WebSocket data.
      *

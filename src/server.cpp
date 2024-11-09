@@ -279,8 +279,8 @@ QHostAddress Server::parseToIPv4(QHostAddress f_remote_ip)
 void Server::reloadSettings()
 {
     ConfigManager::reloadSettings();
-    emit reloadRequest(ConfigManager::serverName(), ConfigManager::serverDescription());
-    emit updateHTTPConfiguration();
+    Q_EMIT reloadRequest(ConfigManager::serverName(), ConfigManager::serverDescription());
+    Q_EMIT updateHTTPConfiguration();
     handleDiscordIntegration();
     logger->loadLogtext();
     m_ipban_list = ConfigManager::iprangeBans();
@@ -522,13 +522,13 @@ void Server::hookupAOClient(AOClient *client)
 void Server::increasePlayerCount()
 {
     m_player_count++;
-    emit playerCountUpdated(m_player_count);
+    Q_EMIT playerCountUpdated(m_player_count);
 }
 
 void Server::decreasePlayerCount()
 {
     m_player_count--;
-    emit playerCountUpdated(m_player_count);
+    Q_EMIT playerCountUpdated(m_player_count);
 }
 
 bool Server::isIPBanned(QHostAddress f_remote_IP)

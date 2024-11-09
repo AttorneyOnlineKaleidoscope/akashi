@@ -202,7 +202,7 @@ bool AOClient::checkPasswordRequirements(QString f_username, QString f_password)
             return false;
     }
     else if (ConfigManager::passwordRequireSpecialCharacters()) {
-        QRegularExpression regex("[~!@#$%^&*_-+=`|\\(){}\[]:;\"'<>,.?/]");
+        QRegularExpression regex("[~!@#$%^&*_-+=`|\\(){}\\[\\]:;\"'<>,.?/]");
         QRegularExpressionMatch match = regex.match(l_decoded_password);
         if (!match.hasMatch())
             return false;
