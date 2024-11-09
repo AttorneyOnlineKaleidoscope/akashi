@@ -76,7 +76,7 @@ void PacketMS::handlePacket(AreaData *area, AOClient &client) const
         validated_packet->setContentField(5, client.m_pos);
 
     client.getServer()->broadcast(validated_packet, client.areaId());
-    emit client.logIC((client.character() + " " + client.characterName()), client.name(), client.m_ipid, client.getServer()->getAreaById(client.areaId())->name(), client.m_last_message);
+    Q_EMIT client.logIC((client.character() + " " + client.characterName()), client.name(), client.m_ipid, client.getServer()->getAreaById(client.areaId())->name(), client.m_last_message);
     area->updateLastICMessage(validated_packet->getContent());
 
     area->startMessageFloodguard(ConfigManager::messageFloodguard());
@@ -168,7 +168,7 @@ AOPacket *PacketMS::validateIcPacket(AOClient &client) const
     }
 
     if (!ConfigManager::filterList().isEmpty()) {
-        foreach (const QString &regex, ConfigManager::filterList()) {
+        for (const QString &regex : ConfigManager::filterList()) {
             QRegularExpression re(regex, QRegularExpression::CaseInsensitiveOption);
             l_incoming_msg.replace(re, "❌");
         }
