@@ -28,71 +28,71 @@ class AOPacket;
 
 class NetworkSocket : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 
-  public:
-    /**
-     * @brief Constructor for the network socket class.
-     * @param QWebSocket for communication with external AO2-Client or WebAO clients.
-     * @param Pointer to the server object.
-     */
-    NetworkSocket(QWebSocket *f_socket, QObject *parent = nullptr);
+public:
+  /**
+   * @brief Constructor for the network socket class.
+   * @param QWebSocket for communication with external AO2-Client or WebAO clients.
+   * @param Pointer to the server object.
+   */
+  NetworkSocket(QWebSocket *f_socket, QObject *parent = nullptr);
 
-    /**
-     * @brief Default destructor for the NetworkSocket object.
-     */
-    ~NetworkSocket();
+  /**
+   * @brief Default destructor for the NetworkSocket object.
+   */
+  ~NetworkSocket();
 
-    /**
-     * @brief Returns the Address of the remote socket.
-     *
-     * @return QHostAddress object of the socket.
-     */
-    QHostAddress peerAddress();
+  /**
+   * @brief Returns the Address of the remote socket.
+   *
+   * @return QHostAddress object of the socket.
+   */
+  QHostAddress peerAddress();
 
-    /**
-     * @brief Closes the socket by request of the child AOClient object or the server.
-     *
-     * @param The close code to the send to the client.
-     */
-    void close(QWebSocketProtocol::CloseCode f_code = QWebSocketProtocol::CloseCodeNormal);
+  /**
+   * @brief Closes the socket by request of the child AOClient object or the server.
+   *
+   * @param The close code to the send to the client.
+   */
+  void close(QWebSocketProtocol::CloseCode f_code = QWebSocketProtocol::CloseCodeNormal);
 
-    /**
-     * @brief Writes data to the network socket.
-     *
-     * @param Packet to be written to the socket.
-     */
-    void write(AOPacket *f_packet);
+  /**
+   * @brief Writes data to the network socket.
+   *
+   * @param Packet to be written to the socket.
+   */
+  void write(AOPacket *f_packet);
 
-  Q_SIGNALS:
-    /**
-     * @brief handlePacket
-     * @param f_packet
-     */
-    void handlePacket(AOPacket *f_packet);
+Q_SIGNALS:
+  /**
+   * @brief handlePacket
+   * @param f_packet
+   */
+  void handlePacket(AOPacket *f_packet);
 
-    /**
-     * @brief Emitted when the socket has been closed and the client is disconnected.
-     */
-    void clientDisconnected();
+  /**
+   * @brief Emitted when the socket has been closed and the client is disconnected.
+   */
+  void clientDisconnected();
 
-  private Q_SLOTS:
-    /**
-     * @brief Handles the processing of WebSocket data.
-     *
-     * @return Decoded AOPacket to be processed by the child AOClient object.
-     */
-    void handleMessage(QString f_data);
+private Q_SLOTS:
+  /**
+   * @brief Handles the processing of WebSocket data.
+   *
+   * @return Decoded AOPacket to be processed by the child AOClient object.
+   */
+  void handleMessage(QString f_data);
 
-  private:
-    QWebSocket *m_client_socket;
+private:
+  QWebSocket *m_client_socket;
 
-    /**
-     * @brief Remote IP of the client.
-     *
-     * @details In the case of the WebSocket we also check if this has been proxy forwarded.
-     */
-    QHostAddress m_socket_ip;
+  /**
+   * @brief Remote IP of the client.
+   *
+   * @details In the case of the WebSocket we also check if this has been proxy forwarded.
+   */
+  QHostAddress m_socket_ip;
 };
 
 #endif
